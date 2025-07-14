@@ -8,7 +8,9 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import testCases.BaseClass;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,19 +52,26 @@ public class ExtentReportManager implements ITestListener {
     public void onTestSuccess(ITestResult result){
         test=extent.createTest(result.getTestClass().getName()); //create a new entry in report
         test.assignCategory(result.getMethod().getGroups());
-        test.log(Status.PASS,"Test case passed is:"+ result.getName()+"got successfully executed"); //update status p/f/s
+        test.log(Status.PASS,"Test case passed is:"+ result.getName()+" got successfully executed"); //update status p/f/s
     }
     public void onTestFailure(ITestResult result){
         test=extent.createTest(result.getTestClass().getName());
         test.assignCategory(result.getMethod().getGroups());
 
-        test.log(Status.FAIL, result.getName()+"got failed");
+        test.log(Status.FAIL, result.getName()+" got failed");
         test.log(Status.INFO, result.getThrowable().getMessage());
+
+        try{
+            String imgPath = new BaseClass().captureScreen(result.getName());   //takescreenshot on failure
+            test.addScreenCaptureFromPath(imgPath);
+        } catch (IOException e1){
+            e1.printStackTrace();
+        }
     }
     public void onTestSkipped(ITestResult result){
         test=extent.createTest(result.getTestClass().getName());
         test.assignCategory(result.getMethod().getGroups());
-        test.log(Status.SKIP, result.getName()+ "got skipped");
+        test.log(Status.SKIP, result.getName()+ " got skipped");
         test.log(Status.INFO, result.getThrowable().getMessage());
     }
     public void onFinish(ITestContext context){
