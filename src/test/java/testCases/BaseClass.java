@@ -1,7 +1,7 @@
 package testCases;
 
 import org.apache.commons.lang3.RandomStringUtils;
-Caimport org.openqa.selenium.OutputType;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
