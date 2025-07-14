@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class TC001_AccountRegistrationTest extends BaseClass{
 
-    @Test
+    @Test(groups = {"Regression","Master"})
     public void verify_account_registration() throws InterruptedException {
         HomePage hp=new HomePage(driver);
         hp.clickMyAccount();

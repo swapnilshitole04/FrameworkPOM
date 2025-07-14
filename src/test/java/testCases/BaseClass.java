@@ -20,7 +20,7 @@ public class BaseClass {
     public WebDriver driver;
     public Properties p;
 
-    @BeforeClass
+    @BeforeClass(groups = {"Sanity","Regression","Master"})
     @Parameters({"os","browser"})
     public void setup(String os, String br) throws InterruptedException, IOException {
 

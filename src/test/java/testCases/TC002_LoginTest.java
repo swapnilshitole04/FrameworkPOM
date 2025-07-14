@@ -9,7 +9,7 @@ import pageObjects.MyAccountPage;
 
 public class TC002_LoginTest extends BaseClass{
 
-    @Test
+    @Test(groups = {"Sanity"})
     public void verify_login(){
         HomePage hp=new HomePage(driver);
         hp.clickMyAccount();
